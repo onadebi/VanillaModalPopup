@@ -16,11 +16,11 @@
     const data = await item.json();
 
     const modal = new ModalPopup({
-        // modalHeader: '<h3>Welcome header</h3>',
+        modalHeader: '<h3>Welcome header</h3>',
         modalBody: `<p>...Hello Modal</p>
                <p>${JSON.stringify(data,null,2)}</p>`,
-        // modalFooter: 'Copyright 2025',
-        btnOpenModalId: 'btnModal'
+        modalFooter: 'Copyright 2025',
+        btnOpenModalId: 'btnModal',
     },
     {modalFooterBgColor: 'transparent', modalHeaderBgColor: 'cornflowerblue', modalBodyBgColor: 'transparent'});
 </script>
