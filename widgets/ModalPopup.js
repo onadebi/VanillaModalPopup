@@ -11,6 +11,7 @@ class ModalPopup {
       modalBodyBgColor = "",
       modalFooterBgColor = "",
       modalWidth = "80%",
+      modalTop = "5%",
     } = {}
   ) {
     this.modalHeader = modalHeader;
@@ -23,6 +24,7 @@ class ModalPopup {
       modalBodyBgColor: modalBodyBgColor,
       modalFooterBgColor: modalFooterBgColor,
       modalWidth:modalWidth,
+      modalTop: modalTop,
     };
     this.createStyles();
   }
@@ -101,6 +103,7 @@ class ModalPopup {
         .modal-Content{
             background-color: #f4f4f4;
             margin:10% auto;
+            margin-top: ${this.modalStylesOverride.modalTop};
             width: ${this.modalStylesOverride.modalWidth};
             box-shadow: 0 5px 8px 0 rgba(0,0,0,0.3),0 7px 20px 0 rgba(0,0,0,0.5);
         }
