@@ -10,6 +10,7 @@ class ModalPopup {
       modalHeaderBgColor = "",
       modalBodyBgColor = "",
       modalFooterBgColor = "",
+      modalWidth = "80%",
     } = {}
   ) {
     this.modalHeader = modalHeader;
@@ -21,6 +22,7 @@ class ModalPopup {
       modalHeaderBgColor: modalHeaderBgColor,
       modalBodyBgColor: modalBodyBgColor,
       modalFooterBgColor: modalFooterBgColor,
+      modalWidth:modalWidth,
     };
     this.createStyles();
   }
@@ -71,11 +73,7 @@ class ModalPopup {
   };
 
   showModal = (evt) => {
-    // if (this.container.style.display === "none") {
       this.container.style.display = "block";
-    // } else {
-    //   this.container.style.display = "none";
-    // }
   };
 
   closeModal = () => {
@@ -103,7 +101,7 @@ class ModalPopup {
         .modal-Content{
             background-color: #f4f4f4;
             margin:10% auto;
-            width:50%;
+            width: ${this.modalStylesOverride.modalWidth};
             box-shadow: 0 5px 8px 0 rgba(0,0,0,0.3),0 7px 20px 0 rgba(0,0,0,0.5);
         }
         .modal-header h3, .modal-footer h4{
