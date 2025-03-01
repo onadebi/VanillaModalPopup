@@ -6,21 +6,23 @@
     <title>Document</title>
 </head>
 <body>
-    <button id="btnModal">Click Here</button>
+    <button type="button" id="btnModal">Click Here</button>
     <!-- <script src="widgets/ModalPopup.js" type="module"></script> -->
 </body>
 </html>
 <script type="module">
     import ModalPopup from './widgets/ModalPopup.js';
-    const item = await fetch('https://jsonplaceholder.typicode.com/todos/5');
-    const data = await item.json();
+    window.onload = async () => {
+        const item = await fetch('https://jsonplaceholder.typicode.com/todos/5');
+        const data = await item.json();
 
-    const modal = new ModalPopup({
-        modalHeader: '<h3>Welcome header</h3>',
-        modalBody: `<p>...Hello Modal</p>
-               <p>${JSON.stringify(data,null,2)}</p>`,
-        modalFooter: 'Copyright 2025',
-        btnOpenModalId: 'btnModal',
-    },
-    {modalFooterBgColor: 'transparent', modalHeaderBgColor: 'cornflowerblue', modalBodyBgColor: 'transparent'});
+        const modal = new ModalPopup({
+            modalHeader: '<h3>Welcome header</h3>',
+            modalBody: `<p>...Hello Modal</p>
+                   <p>${JSON.stringify(data,null,2)}</p>`,
+            modalFooter: 'Copyright 2025',
+            btnOpenModalId: 'btnModal',
+        },
+        {modalFooterBgColor: 'transparent', modalHeaderBgColor: 'cornflowerblue', modalBodyBgColor: 'transparent'});
+    };
 </script>
