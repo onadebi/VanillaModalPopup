@@ -11,6 +11,7 @@ class ModalPopup {
       modalBodyBgColor = "",
       modalFooterBgColor = "",
       modalWidth = "80%",
+      modalTop = "5%",
     } = {}
   ) {
     this.modalHeader = modalHeader;
@@ -23,34 +24,35 @@ class ModalPopup {
       modalBodyBgColor: modalBodyBgColor,
       modalFooterBgColor: modalFooterBgColor,
       modalWidth:modalWidth,
+      modalTop: modalTop,
     };
     this.createStyles();
   }
 
   initialise = () => {
-    this.container = document.createElement("div");
-    this.container.style.display = "none";
+    this.popupContainer = document.createElement("div");
+    this.popupContainer.style.display = "none";
 
-    document.body.appendChild(this.container);
-    this.container.innerHTML = `
-            <div id="dvModal" class="modal">
-                <div class="modal-Content">
-                    <div class="modal-header" style="position:relative;padding:20px;">
-                        <span class="closeBtn" style="position:absolute; right:15px;top:8px; font-size:25px;">&times;</span>
+    document.body.appendChild(this.popupContainer);
+    this.popupContainer.innerHTML = `
+            <div id="dv-onax-Modal" class="onax-modal">
+                <div class="onax-modal-Content">
+                    <div class="onax-modal-header" style="position:relative;padding:20px;">
+                        <span class="onax-closeBtn" style="position:absolute; right:15px;top:8px; font-size:25px;">&times;</span>
                         ${
                           this.modalHeader && this.modalHeader.length > 0
                             ? `${this.modalHeader}`
                             : ""
                         }
                     </div>
-                    <div class="modal-body">
+                    <div class="onax-modal-body">
                         ${
                           this.modalBody && this.modalBody.length > 0
                             ? `${this.modalBody}`
                             : ""
                         }    
                     </div>
-                    <div class="modal-footer">
+                    <div class="onax-modal-footer">
                         ${
                           this.modalFooter && this.modalFooter.length > 0
                             ? `${this.modalFooter}`
@@ -66,18 +68,18 @@ class ModalPopup {
       this.showModal(evt);
     });
 
-    const btnClose = document.getElementsByClassName("closeBtn")[0];
+    const btnClose = document.getElementsByClassName("onax-closeBtn")[0];
     btnClose.addEventListener("click", this.closeModal);
 
     
   };
 
   showModal = (evt) => {
-      this.container.style.display = "block";
+      this.popupContainer.style.display = "block";
   };
 
   closeModal = () => {
-    this.container.style.display = "none";
+    this.popupContainer.style.display = "none";
   };
 
   createStyles = () => {
@@ -85,7 +87,7 @@ class ModalPopup {
     document.head.appendChild(styleTag);
 
     styleTag.innerHTML = `
-        .modal{
+        .onax-modal{
             // display: none;
             position: fixed;
             z-index: 1;
@@ -94,20 +96,21 @@ class ModalPopup {
             height: 100%;
             width: 100%; overflow: auto;
             background-color: rgba(0,0,0,0.3);
-            animation: onModalOpen;
+            animation: on-onax-ModalOpen;
             animation-duration: 1.0s;
         }
 
-        .modal-Content{
+        .onax-modal-Content{
             background-color: #f4f4f4;
             margin:10% auto;
+            margin-top: ${this.modalStylesOverride.modalTop};
             width: ${this.modalStylesOverride.modalWidth};
             box-shadow: 0 5px 8px 0 rgba(0,0,0,0.3),0 7px 20px 0 rgba(0,0,0,0.5);
         }
-        .modal-header h3, .modal-footer h4{
+        .onax-modal-header h3, .onax-modal-footer h4{
             margin: 0px;
         }
-        .modal-header{
+        .onax-modal-header{
             background: ${
               this.modalStylesOverride.modalHeaderBgColor &&
               this.modalStylesOverride.modalHeaderBgColor.length > 2
@@ -117,7 +120,7 @@ class ModalPopup {
             padding:15px;
             color:#fff;
         }
-        .modal-body{
+        .onax-modal-body{
             padding:15px;
             background: ${
               this.modalStylesOverride.modalBodyBgColor &&
@@ -127,7 +130,7 @@ class ModalPopup {
             };
             color:#000;
         }
-        .modal-footer{
+        .onax-modal-footer{
             background: ${
               this.modalStylesOverride.modalFooterBgColor &&
               this.modalStylesOverride.modalFooterBgColor.length > 2
@@ -138,17 +141,17 @@ class ModalPopup {
             color:#fff;
         }
 
-        .closeBtn{
+        .onax-closeBtn{
             float:right;
             color:#fff;
             size: 50px;
         }
 
-        .closeBtn:hover, .closeBtn:focus{
+        .onax-closeBtn:hover, .onax-closeBtn:focus{
             color:#000;
             cursor: pointer;
         }
-        @keyframes onModalOpen{
+        @keyframes on-onax-ModalOpen{
             from {opacity: 0;} to {opacity: 1;}
         }
     `;
